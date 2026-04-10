@@ -21,12 +21,16 @@ import Team from "@/pages/Team";
 import JoinTeam from "@/pages/JoinTeam";
 import TestComparison from "@/pages/TestComparison";
 import TestCalendar from "@/pages/TestCalendar";
+import TestIdeaGenerator from "@/pages/TestIdeaGenerator";
+import ChannelPerformance from "@/pages/ChannelPerformance";
 
 function AppRoutes() {
   return (
     <DashboardLayout>
       <Switch>
         <Route path="/" component={Dashboard} />
+        <Route path="/channels" component={ChannelPerformance} />
+        <Route path="/ideas" component={TestIdeaGenerator} />
         <Route path="/pipeline" component={TestPipeline} />
         <Route path="/tests/:id">
           {(params) => <TestDetail params={params} />}

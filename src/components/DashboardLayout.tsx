@@ -16,6 +16,8 @@ import {
   Database,
   ChevronDown,
   LogOut,
+  Lightbulb,
+  Globe,
 } from 'lucide-react'
 import {
   Sidebar,
@@ -56,13 +58,15 @@ const navSections: NavSection[] = [
     title: 'Overview',
     items: [
       { label: 'Dashboard', href: '/', icon: <LayoutDashboard className="h-4 w-4" /> },
-      { label: 'Performance Analyzer', href: '/analyzer', icon: <TrendingUp className="h-4 w-4" /> },
+      { label: 'Channel Performance', href: '/channels', icon: <Globe className="h-4 w-4" /> },
       { label: 'Campaign Intel', href: '/campaigns', icon: <BarChartIcon className="h-4 w-4" /> },
+      { label: 'Performance Analyzer', href: '/analyzer', icon: <TrendingUp className="h-4 w-4" /> },
     ],
   },
   {
     title: 'Testing',
     items: [
+      { label: 'Test Idea Generator', href: '/ideas', icon: <Lightbulb className="h-4 w-4" /> },
       { label: 'Test Pipeline', href: '/pipeline', icon: <FlaskConical className="h-4 w-4" /> },
       { label: 'Test Calendar', href: '/calendar', icon: <CalendarDays className="h-4 w-4" /> },
       { label: 'Learning Log', href: '/learnings', icon: <BookOpen className="h-4 w-4" /> },

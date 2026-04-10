@@ -1,23 +1,11 @@
 import { useState } from 'react'
 import { useLocation } from 'wouter'
 import {
-  BarChart3,
-  LayoutDashboard,
-  TrendingUp,
-  BarChart as BarChartIcon,
-  FlaskConical,
-  CalendarDays,
-  BookOpen,
-  Zap,
-  FileText,
-  Users,
-  Calculator,
-  Settings,
-  Database,
-  ChevronDown,
-  LogOut,
   Lightbulb,
   Globe,
+  ChevronDown,
+  LogOut,
+  Zap,
 } from 'lucide-react'
 import {
   Sidebar,
@@ -38,7 +26,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Separator } from '@/components/ui/separator'
 import { useAuth } from '@/_core/hooks/useAuth'
 import { cn } from '@/lib/utils'
 
@@ -48,87 +35,37 @@ interface NavItem {
   icon: React.ReactNode
 }
 
-interface NavSection {
-  title: string
-  items: NavItem[]
-}
-
-const navSections: NavSection[] = [
-  {
-    title: 'Overview',
-    items: [
-      { label: 'Dashboard', href: '/', icon: <LayoutDashboard className="h-4 w-4" /> },
-      { label: 'Channel Performance', href: '/channels', icon: <Globe className="h-4 w-4" /> },
-      { label: 'Campaign Intel', href: '/campaigns', icon: <BarChartIcon className="h-4 w-4" /> },
-      { label: 'Performance Analyzer', href: '/analyzer', icon: <TrendingUp className="h-4 w-4" /> },
-    ],
-  },
-  {
-    title: 'Testing',
-    items: [
-      { label: 'Test Idea Generator', href: '/ideas', icon: <Lightbulb className="h-4 w-4" /> },
-      { label: 'Test Pipeline', href: '/pipeline', icon: <FlaskConical className="h-4 w-4" /> },
-      { label: 'Test Calendar', href: '/calendar', icon: <CalendarDays className="h-4 w-4" /> },
-      { label: 'Learning Log', href: '/learnings', icon: <BookOpen className="h-4 w-4" /> },
-    ],
-  },
-  {
-    title: 'Briefs',
-    items: [
-      { label: 'Generate Brief', href: '/briefs', icon: <Zap className="h-4 w-4" /> },
-      { label: 'Brief History', href: '/briefs/history', icon: <FileText className="h-4 w-4" /> },
-    ],
-  },
-  {
-    title: 'Team',
-    items: [{ label: 'Team Members', href: '/team', icon: <Users className="h-4 w-4" /> }],
-  },
-  {
-    title: 'Tools',
-    items: [
-      { label: 'Stat Calculator', href: '/stat-calc', icon: <Calculator className="h-4 w-4" /> },
-      { label: 'Settings', href: '/settings', icon: <Settings className="h-4 w-4" /> },
-      { label: 'AppsFlyer SSOT', href: '/settings/appsflyer', icon: <Database className="h-4 w-4" /> },
-    ],
-  },
+const navItems: NavItem[] = [
+  { label: 'Test Ideas', href: '/', icon: <Lightbulb className="h-4 w-4" /> },
+  { label: 'Channel Performance', href: '/channels', icon: <Globe className="h-4 w-4" /> },
 ]
 
 function SidebarNav() {
   const [location] = useLocation()
 
   return (
-    <>
-      {navSections.map((section, idx) => (
-        <div key={section.title}>
-          {idx > 0 && <Separator className="my-2" />}
-          <div className="px-2 py-2">
-            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-              {section.title}
-            </p>
-            <SidebarMenu className="mt-2">
-              {section.items.map((item) => {
-                const isActive = location === item.href
-                return (
-                  <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton
-                      isActive={isActive}
-                      onClick={() => (window.location.href = item.href)}
-                      className={cn(
-                        'flex items-center gap-2',
-                        isActive && 'bg-primary text-primary-foreground hover:bg-primary/90'
-                      )}
-                    >
-                      {item.icon}
-                      <span>{item.label}</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                )
-              })}
-            </SidebarMenu>
-          </div>
-        </div>
-      ))}
-    </>
+    <div className="px-2 py-4">
+      <SidebarMenu>
+        {navItems.map((item) => {
+          const isActive = location === item.href
+          return (
+            <SidebarMenuItem key={item.href}>
+              <SidebarMenuButton
+                isActive={isActive}
+                onClick={() => (window.location.href = item.href)}
+                className={cn(
+                  'flex items-center gap-2',
+                  isActive && 'bg-primary text-primary-foreground hover:bg-primary/90'
+                )}
+              >
+                {item.icon}
+                <span>{item.label}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          )
+        })}
+      </SidebarMenu>
+    </div>
   )
 }
 
@@ -177,8 +114,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <Sidebar className="border-r">
         <SidebarHeader className="border-b">
           <div className="flex items-center gap-2 px-2 py-1">
-            <BarChart3 className="h-5 w-5 text-primary" />
-            <h1 className="font-semibold text-sm">Meta Ads Agent</h1>
+            <Zap className="h-5 w-5 text-primary" />
+            <h1 className="font-semibold text-sm">Ad Test Ideas</h1>
           </div>
         </SidebarHeader>
         <SidebarContent>
